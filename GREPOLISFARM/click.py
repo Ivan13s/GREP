@@ -1,4 +1,5 @@
 import importlib
+import os
 import random
 import sys
 import threading
@@ -7,7 +8,7 @@ import tkinter
 import tkinter as tk
 from tkinter import *
 from threading import Thread, Event
-
+from termcolor import colored
 import pyautogui
 
 root = Tk()
@@ -16,7 +17,7 @@ root = Tk()
 class Clicker:
     def __init__(self):
         self.alive = None
-        self.paradis= None
+        self.paradis = None
 
     def alive_set(self):
         self.alive = True
@@ -41,16 +42,26 @@ class Clicker:
                 CEVA = random.uniform(0, 2)
                 time.sleep(CEVA)
                 print("FARM: ", CEVA)
-                pyautogui.leftClick(random.uniform(813, 818), random.uniform(328, 334),interval=random.uniform(0.2, 0.9),duration=random.uniform(0.2, 0.9))  # for select all
+                pyautogui.leftClick(random.uniform(813, 818), random.uniform(328, 334),interval=random.uniform(0.2, 0.9),duration=random.uniform(0.2, 0.9))  # for selel
                 pyautogui.leftClick(random.uniform(1220, 1260), random.uniform(798, 803),interval=random.uniform(0.2, 0.9), duration=random.uniform(0.2, 0.9))  # for collect
 
     def parade(self):
+        count = 0
         while True:
             if self.paradis:
-                time.sleep(3)
-                x, y = pyautogui.locateCenterOnScreen("paradeorfeu.png")
-                print(x,y)
-                time.sleep(3)
+                time.sleep(1)
+                try:
+                    x, y = pyautogui.locateCenterOnScreen("paradaorfeu.png")
+                    generate=random.uniform(0,5)
+                    time.sleep(generate)
+                    print(generate)
+                    pyautogui.leftClick(x, y + 30, duration=random.uniform(0, 2))
+                    count += 1
+                    print("Parade date: ", count)
+                    label.config(text=f"PARADE DATE:{str(count)}")
+                except TypeError:
+                    time.sleep(1)
+                    print("Inca n-am gasit nimica")
 
 
 clicker = Clicker()
@@ -70,4 +81,6 @@ b3 = tkinter.Button(root, text="Start parada cu orfeul", command=clicker.alive_p
 b3.pack()
 b4 = tk.Button(root, text="Stop parada cu orfeu", command=clicker.alive_cleanparade)
 b4.pack()
+label=tk.Label(root,text="PARADE DATE: ",fg="dark green",background="black",font="bold")
+label.pack()
 root.mainloop()
