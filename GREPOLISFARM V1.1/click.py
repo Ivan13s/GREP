@@ -44,23 +44,30 @@ class Clicker:
         i = 0
         while True:
             if self.alive:
-                for i in range(600):
+                for i in range(10):
                     if self.alive:
-                        my_progress.start(interval=6000)
+                        my_progress.step(10)
                         i += 1
                         print(i)
                         sleep(1)
-                    if self.alive is False or i == 600:
+                    elif self.alive is False:
                         my_progress.stop()
+                        my_progress.step(0)
+                        break
+                    if i == 10 and self.alive is True:
+                        print("Good")
+                        my_progress.stop()
+                        my)
+                        CEVA = random.uniform(3, 6)
+                        time.sleep(CEVA)
+                        print("FARM: ", CEVA)
+                        pyautogui.leftClick(random.uniform(813, 818), random.uniform(328, 334),
+                                            interval=random.uniform(0.2, 0.9),
+                                            duration=random.uniform(0.2, 0.9))  # for select
+                        pyautogui.leftClick(random.uniform(1220, 1260), random.uniform(798, 803),
+                                            interval=random.uniform(0.2, 0.9),
+                                            duration=random.uniform(0.2, 0.9))  # for collect
 
-                print("Good")
-                CEVA = random.uniform(2, 5)
-                time.sleep(CEVA)
-                print("FARM: ", CEVA)
-                pyautogui.leftClick(random.uniform(813, 818), random.uniform(328, 334),
-                                    interval=random.uniform(0.2, 0.9), duration=random.uniform(0.2, 0.9))  # for selel
-                pyautogui.leftClick(random.uniform(1220, 1260), random.uniform(798, 803),
-                                    interval=random.uniform(0.2, 0.9), duration=random.uniform(0.2, 0.9))  # for collect
 
     def parade(self):
         count = 0
@@ -72,7 +79,7 @@ class Clicker:
                     generate = random.uniform(0, 5)
                     time.sleep(generate)
                     print(generate)
-                    pyautogui.leftClick(x, y, duration=random.uniform(0, 2))
+                    pyautogui.leftClick(x, y+30, duration=random.uniform(0, 2))
                     count += 1
                     print("Parade date: ", count)
                     label.config(text=f"PARADE DATE:{str(count)}")
@@ -86,8 +93,12 @@ t1 = Thread(target=clicker.run)
 t2 = Thread(target=clicker.parade)
 t1.start()
 t2.start()
-my_progress = ttk.Progressbar(root, orient=HORIZONTAL, length=600, mode='determinate')
-my_progress.pack()
+s = ttk.Style()
+s.theme_use('clam')
+s.configure("3.Horizontal.TProgressbar", troughcolor ='black', background='red')
+my_progress = ttk.Progressbar(root, style='3.Horizontal.TProgressbar', orient=HORIZONTAL, length=100,
+                              mode='determinate')
+my_progress.pack(padx=10,pady=5)
 canvas = tk.Canvas(root, height=700, width=700, bg="#000000")
 canvas.pack()
 
@@ -99,6 +110,6 @@ b3 = tkinter.Button(root, text="Start parada cu orfeul", command=clicker.alive_p
 b3.pack()
 b4 = tk.Button(root, text="Stop parada cu orfeu", command=clicker.alive_cleanparade)
 b4.pack()
-label = tk.Label(root, text="PARADE DATE: ", fg="dark green", background="black", font="bold", padx=10, pady=10)
+label = tk.Label(root, text=f"PARADE DATE:{0} ", fg="dark green", background="black", font="bold", padx=10, pady=10)
 label.pack()
 root.mainloop()
