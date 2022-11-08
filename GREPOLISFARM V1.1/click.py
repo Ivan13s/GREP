@@ -2,6 +2,7 @@ import random
 import time
 import tkinter
 import tkinter as tk
+from faulthandler import disable
 from threading import Thread
 # importing libraries
 from time import sleep
@@ -17,7 +18,7 @@ class Clicker:
     def __init__(self):
         self.alive = None
         self.paradis = None
-        self.cultura= None
+        self.cultura = None
 
     def alive_set(self):
         self.alive = True
@@ -34,13 +35,35 @@ class Clicker:
     def alive_cleanparade(self):
         self.paradis = False
         print(20 * '-', 'Stopped parada cu orfeu', '_' * 20)
-    def alive_parada1(self):
+
+    def alive_parada(self):
         self.cultura = True
         print(20 * '-', 'Start festivale+parade+teatre', '_' * 20)
 
-    def alive_cleanparada1(self):
+    def alive_cleanparada(self):
         self.cultura = False
         print(20 * '-', 'Stop festivale+parade+teatre', '_' * 20)
+
+    def FESTIVALE_TEATRE(self):
+        while True:
+            if self.cultura:
+                time.sleep(1)
+                try:
+                    overviews = pyautogui.locateCenterOnScreen("overviews.png")
+                    print(overviews)
+                    x, y = pyautogui.locateCenterOnScreen("city_festival.png")
+                    print(x, y)
+                    sleep(1)
+                    pyautogui.leftClick(x + 133, y - 4)
+                    time.sleep(random.uniform(0.5, 2.3))
+                    pyautogui.leftClick(x, y)
+                    x, y = pyautogui.locateCenterOnScreen("victory.png")
+                    print(x, y)
+                    pyautogui.leftClick(x,y)
+
+                except TypeError:
+                    print("Nu gasesc overviews")
+                    time.sleep(1)
 
     def run(self):
         i = 0
@@ -87,39 +110,22 @@ class Clicker:
                 except TypeError:
                     time.sleep(1)
                     print("Inca n-am gasit nimica")
-                finally:
-                    print("BYE")
-
-    def FESTIVALE_TEATRE(self):
-        while True:
-            if self.cultura:
-                time.sleep(1)
-                try:
-                    overviews= pyautogui.locateCenterOnScreen("overviews.png")
-                    print(overviews)
-                    city_festival=pyautogui.locateOnScreen("city_festival.png")
-                    print(city_festival)
-                except TypeError:
-                    print("Nu gasesc overviews")
-                finally:
-                    print("Bye")
-
 
 
 clicker = Clicker()
 t1 = Thread(target=clicker.run)
 t2 = Thread(target=clicker.parade)
-t3 =Thread(target=clicker.FESTIVALE_TEATRE)
+t3 = Thread(target=clicker.FESTIVALE_TEATRE)
 t1.start()
 t2.start()
 t3.start()
 s = ttk.Style()
 s.theme_use('clam')
 s.configure("3.Horizontal.TProgressbar", troughcolor='black', background='red')
-my_progress = ttk.Progressbar(root, style='3.Horizontal.TProgressbar', orient=HORIZONTAL, length=100,
-                              mode='determinate', )
-
+my_progress = ttk.Progressbar(root, style='3.Horizontal.TProgressbar',
+                              orient=HORIZONTAL, length=100, mode='determinate')
 my_progress.pack(padx=10, pady=5)
+
 canvas = tk.Canvas(root, height=700, width=700, bg="#000000")
 canvas.pack()
 
@@ -131,10 +137,11 @@ b3 = tkinter.Button(root, text="Start parada cu orfeul", command=clicker.alive_p
 b3.pack()
 b4 = tk.Button(root, text="Stop parada cu orfeu", command=clicker.alive_cleanparade)
 b4.pack()
-b5 = tk.Button(root, text="Start festivale+teatre+parade", command=clicker.alive_parada1)
+b5 = tk.Button(root, text="Start festivale+teatre+parade", command=clicker.alive_parada)
 b5.pack()
-b6 = tk.Button(root, text="Stop festivale+teatre+parade", command=clicker.alive_cleanparada1)
+b6 = tk.Button(root, text="Stop festivale+teatre+parade", command=clicker.alive_cleanparada)
 b6.pack()
-label = tk.Label(root, text=f"PARADE DATE:{0} ", fg="dark green", background="black", font="bold", padx=10, pady=10)
+label = tk.Label(root, text=f"PARADE DATE:{0} ", fg="dark green",
+                 background="black", font="bold", padx=10, pady=10)
 label.pack()
 root.mainloop()
