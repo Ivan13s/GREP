@@ -31,6 +31,7 @@ class Clicker:
     def __init__(self):
         self.alive = None
         self.paradis = None
+        self.cultura= None
 
     def alive_set(self):
         self.alive = True
@@ -102,17 +103,24 @@ class Clicker:
                     print("Inca n-am gasit nimica")
 
     def FESTIVALE_TEATRE(self):
-        if self.cultura:
-            time.sleep(1)
-            try:
-                x, y = pyautogui.locateCenterOnScreen("overviews.png")
+        while True:
+            if self.cultura:
+                time.sleep(1)
+                try:
+                    x, y = pyautogui.locateCenterOnScreen("overviews.png")
+                    print(x,y)
+                except TypeError:
+                    print("Nu gasesc overviews")
+
 
 
 clicker = Clicker()
 t1 = Thread(target=clicker.run)
 t2 = Thread(target=clicker.parade)
+t3 =Thread(target=clicker.FESTIVALE_TEATRE)
 t1.start()
 t2.start()
+t3.start()
 s = ttk.Style()
 s.theme_use('clam')
 s.configure("3.Horizontal.TProgressbar", troughcolor='black', background='red')
@@ -131,6 +139,10 @@ b3 = tkinter.Button(root, text="Start parada cu orfeul", command=clicker.alive_p
 b3.pack()
 b4 = tk.Button(root, text="Stop parada cu orfeu", command=clicker.alive_cleanparade)
 b4.pack()
+b5 = tk.Button(root, text="Start festivale+teatre+parade", command=clicker.alive_parada1)
+b5.pack()
+b6 = tk.Button(root, text="Stop festivale+teatre+parade", command=clicker.alive_cleanparada1)
+b6.pack()
 label = tk.Label(root, text=f"PARADE DATE:{0} ", fg="dark green", background="black", font="bold", padx=10, pady=10)
 label.pack()
 root.mainloop()
