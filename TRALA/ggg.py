@@ -29,8 +29,23 @@ root = Tk()
 
 class Clicker:
     def __init__(self):
+        super().__init__()
         self.alive = None
         self.paradis = None
+        super().__init__()
+
+        # setting title
+        #self.setWindowTitle("Python ")
+
+        # setting geometry
+        #self.setGeometry(100, 100, 600, 400)
+
+        # calling method
+        self.UiComponents()
+
+        # showing all the widgets
+        #self.show()
+
 
     def alive_set(self):
         self.alive = True
@@ -47,33 +62,47 @@ class Clicker:
     def alive_cleanparade(self):
         self.paradis = False
         print(20 * '-', 'Stopped parada cu orfeu', '_' * 20)
-    def alive_parada1(self):
-        self.cultura = True
-        print(20 * '-', 'Started parada cu orfeu', '_' * 20)
 
-    def alive_cleanparada1(self):
-        self.cultura = False
-        print(20 * '-', 'Stopped parada cu orfeu', '_' * 20)
+    def UiComponents(self):
+
+        # creating progress bar
+        bar = QProgressBar()
+
+        # setting geometry to progress bar
+        bar.setGeometry(200, 150, 200, 30)
+
+        # set value to progress bar
+        bar.setValue(70)
+
+        # setting text
+        bar.setFormat('This is progress bar')
+
+        # setting alignment to centre
+        bar.setAlignment(Qt.AlignCenter)
+
 
     def run(self):
         i = 0
         while True:
             if self.alive:
-                for i in range(600):
+                for i in range(10):
                     if self.alive:
-                        my_progress.step(0.1666666666666667)
+                        # my_progress.step(10)
                         i += 1
                         print(i)
                         sleep(1)
 
                     elif self.alive is False:
-                        my_progress.stop()
-                        my_progress.step(0)
+                        # my_progress.stop()
+                        # my_progress.step(0)
                         break
-                    if i == 600 and self.alive is True:
+                    if i == 10 and self.alive is True:
                         print("Good")
-                        CEVA = random.uniform(0, 300)
+                        # my_progress.stop()
+                        clicker.UiComponents()
+                        CEVA = random.uniform(3, 6)
                         time.sleep(CEVA)
+
                         print("FARM: ", CEVA)
                         pyautogui.leftClick(random.uniform(813, 818), random.uniform(328, 334),
                                             interval=random.uniform(0.2, 0.9),
@@ -81,7 +110,7 @@ class Clicker:
                         pyautogui.leftClick(random.uniform(1220, 1260), random.uniform(798, 803),
                                             interval=random.uniform(0.2, 0.9),
                                             duration=random.uniform(0.2, 0.9))  # for collect
-                        my_progress.step(0)
+
 
     def parade(self):
         count = 0
@@ -93,7 +122,7 @@ class Clicker:
                     generate = random.uniform(0, 5)
                     time.sleep(generate)
                     print(generate)
-                    pyautogui.leftClick(x, y + 30, duration=random.uniform(0, 2))
+                    pyautogui.leftClick(x, y+30, duration=random.uniform(0, 2))
                     count += 1
                     print("Parade date: ", count)
                     label.config(text=f"PARADE DATE:{str(count)}")
@@ -101,11 +130,6 @@ class Clicker:
                     time.sleep(1)
                     print("Inca n-am gasit nimica")
 
-    def FESTIVALE_TEATRE(self):
-        if self.cultura:
-            time.sleep(1)
-            try:
-                x, y = pyautogui.locateCenterOnScreen("paradaorfeu.png")
 
 
 clicker = Clicker()
@@ -113,13 +137,13 @@ t1 = Thread(target=clicker.run)
 t2 = Thread(target=clicker.parade)
 t1.start()
 t2.start()
-s = ttk.Style()
-s.theme_use('clam')
-s.configure("3.Horizontal.TProgressbar", troughcolor='black', background='red')
-my_progress = ttk.Progressbar(root, style='3.Horizontal.TProgressbar', orient=HORIZONTAL, length=100,
-                              mode='determinate', )
+# s = ttk.Style()
+# s.theme_use('clam')
+# s.configure("3.Horizontal.TProgressbar", troughcolor ='black', background='red')
+# my_progress = ttk.Progressbar(root, style='3.Horizontal.TProgressbar', orient=HORIZONTAL, length=100,
+#                               mode='determinate',)
+printProgressBar()
 
-my_progress.pack(padx=10, pady=5)
 canvas = tk.Canvas(root, height=700, width=700, bg="#000000")
 canvas.pack()
 
