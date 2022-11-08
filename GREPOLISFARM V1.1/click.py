@@ -48,22 +48,9 @@ class Clicker:
         while True:
             if self.cultura:
                 time.sleep(1)
-                try:
-                    overviews = pyautogui.locateCenterOnScreen("overviews.png")
-                    print(overviews)
-                    x, y = pyautogui.locateCenterOnScreen("city_festival.png")
-                    print(x, y)
-                    sleep(1)
-                    pyautogui.leftClick(x + 133, y - 4)
-                    time.sleep(random.uniform(0.5, 2.3))
-                    pyautogui.leftClick(x, y)
-                    x, y = pyautogui.locateCenterOnScreen("victory.png")
-                    print(x, y)
-                    pyautogui.leftClick(x,y)
+                x,y = pyautogui.locateCenterOnScreen("overviews.png")
+                print(x,y)
 
-                except TypeError:
-                    print("Nu gasesc overviews")
-                    time.sleep(1)
 
     def run(self):
         i = 0
