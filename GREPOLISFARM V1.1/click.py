@@ -1,27 +1,13 @@
-import importlib
-import os
 import random
-import sys
-import textwrap
-import threading
 import time
 import tkinter
 import tkinter as tk
-from tkinter import *
-from threading import Thread, Event
-from tkinter import ttk
-from tkinter.messagebox import showinfo
+from threading import Thread
 # importing libraries
-from PyQt5.QtWidgets import *
-from PyQt5 import QtCore, QtGui
-from PyQt5.QtGui import *
-from PyQt5.QtCore import *
-import sys
-import pandas as pd
-import numpy as np
 from time import sleep
-from termcolor import colored
-from tqdm import tqdm, trange
+from tkinter import *
+from tkinter import ttk
+
 import pyautogui
 
 root = Tk()
@@ -50,11 +36,11 @@ class Clicker:
         print(20 * '-', 'Stopped parada cu orfeu', '_' * 20)
     def alive_parada1(self):
         self.cultura = True
-        print(20 * '-', 'Started parada cu orfeu', '_' * 20)
+        print(20 * '-', 'Start festivale+parade+teatre', '_' * 20)
 
     def alive_cleanparada1(self):
         self.cultura = False
-        print(20 * '-', 'Stopped parada cu orfeu', '_' * 20)
+        print(20 * '-', 'Stop festivale+parade+teatre', '_' * 20)
 
     def run(self):
         i = 0
@@ -101,16 +87,22 @@ class Clicker:
                 except TypeError:
                     time.sleep(1)
                     print("Inca n-am gasit nimica")
+                finally:
+                    print("BYE")
 
     def FESTIVALE_TEATRE(self):
         while True:
             if self.cultura:
                 time.sleep(1)
                 try:
-                    x, y = pyautogui.locateCenterOnScreen("overviews.png")
-                    print(x,y)
+                    overviews= pyautogui.locateCenterOnScreen("overviews.png")
+                    print(overviews)
+                    city_festival=pyautogui.locateOnScreen("city_festival.png")
+                    print(city_festival)
                 except TypeError:
                     print("Nu gasesc overviews")
+                finally:
+                    print("Bye")
 
 
 
