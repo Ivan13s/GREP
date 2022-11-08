@@ -105,7 +105,7 @@ class Clicker:
         if self.cultura:
             time.sleep(1)
             try:
-                x, y = pyautogui.locateCenterOnScreen("paradaorfeu.png")
+                x, y = pyautogui.locateCenterOnScreen("overviews.png")
 
 
 clicker = Clicker()
