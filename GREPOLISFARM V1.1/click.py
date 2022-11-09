@@ -47,16 +47,60 @@ class Clicker:
     def FESTIVALE_TEATRE(self):
         while True:
             if self.cultura:
-                time.sleep(1)
-                x,y = pyautogui.locateCenterOnScreen("overviews.png")
-                print(x,y)
-
+                try:
+                    time.sleep(3)
+                    owerviews = pyautogui.locateCenterOnScreen("overviews.png")
+                    print(owerviews)
+                    time.sleep(1)
+                    x, y = pyautogui.locateCenterOnScreen("city_festival.png")
+                    print(x, y)
+                    time.sleep(1)
+                    pyautogui.leftClick(x + 133, y - 4)
+                    time.sleep(1)
+                    try:
+                        p, c = pyautogui.locateCenterOnScreen("battle.png")
+                        print(p, c)
+                        pyautogui.leftClick(x + 50, y - 4)
+                        time.sleep(0.1)
+                        a, b = pyautogui.locateCenterOnScreen("victory.png")
+                        time.sleep(1)
+                        pyautogui.leftClick(a, b)
+                        time.sleep(1)
+                        pyautogui.leftClick(x + 133, y - 4)
+                        time.sleep(1)
+                    except TypeError:
+                        pyautogui.leftClick(x + 50, y - 4)
+                        time.sleep(0.1)
+                        c, d = pyautogui.locateCenterOnScreen("theater.png")
+                        time.sleep(1)
+                        pyautogui.leftClick(c, d)
+                        time.sleep(1)
+                        pyautogui.leftClick(x + 133, y - 4)
+                        time.sleep(1)
+                        pyautogui.leftClick(x + 50, y - 4)
+                        time.sleep(0.1)
+                        e, f = pyautogui.locateCenterOnScreen("city.png")
+                        time.sleep(1)
+                        pyautogui.leftClick(e, f)
+                except TypeError:
+                    cent = pyautogui.locateCenterOnScreen("cent.png")
+                    pyautogui.moveTo(cent)
+                    time.sleep(2)
+                    cult = pyautogui.locateCenterOnScreen("cult.png")
+                    pyautogui.leftClick(cult)
+                    time.sleep(1)
+                    r, i = pyautogui.locateCenterOnScreen("overviews.png")
+                    print(r, i)
+                    time.sleep(1)
+                    pyautogui.moveTo(r, i)
+                    time.sleep(1)
+                    pyautogui.dragTo(80, 400, button='left', duration=0.5)
 
     def run(self):
         i = 0
         while True:
             if self.alive:
-                for i in range(600):
+                for i in range(10):
                     if self.alive:
                         my_progress.step(0.1666666666666667)
                         i += 1
@@ -67,18 +111,41 @@ class Clicker:
                         my_progress.stop()
                         my_progress.step(0)
                         break
-                    if i == 600 and self.alive is True:
+                    if i == 10 and self.alive is True:
                         print("Good")
-                        CEVA = random.uniform(0, 300)
-                        time.sleep(CEVA)
-                        print("FARM: ", CEVA)
-                        pyautogui.leftClick(random.uniform(813, 818), random.uniform(328, 334),
-                                            interval=random.uniform(0.2, 0.9),
-                                            duration=random.uniform(0.2, 0.9))  # for select
-                        pyautogui.leftClick(random.uniform(1220, 1260), random.uniform(798, 803),
-                                            interval=random.uniform(0.2, 0.9),
-                                            duration=random.uniform(0.2, 0.9))  # for collect
-                        my_progress.step(0)
+                        try:
+                            k,l = pyautogui.locateCenterOnScreen("collectfarm.png")
+                            print(k,l)
+                            CEVA = random.uniform(0, 10)
+                            print("FARM: ", CEVA)
+                            time.sleep(CEVA)
+                            pyautogui.leftClick(random.uniform(813, 818), random.uniform(328, 334),
+                                                interval=random.uniform(0.2, 0.9),
+                                                duration=random.uniform(0.2, 0.9))  # for select
+                            pyautogui.leftClick(random.uniform(1220, 1260), random.uniform(798, 803),
+                                                interval=random.uniform(0.2, 0.9),
+                                                duration=random.uniform(0.2, 0.9))  # for collect
+                            my_progress.step(0)
+                        except TypeError:
+                            print("Inca caut")
+                            cent = pyautogui.locateCenterOnScreen("cent.png")
+                            time.sleep(0.1)
+                            pyautogui.moveTo(cent)
+                            time.sleep(0.5)
+                            farm = pyautogui.locateCenterOnScreen("farm.png")
+                            time.sleep(0.1)
+                            pyautogui.leftClick(farm)
+                            k, l = pyautogui.locateCenterOnScreen("collectfarm.png")
+                            print(k, l)
+                            CEVA = random.uniform(0, 10)
+                            print("FARM: ", CEVA)
+                            time.sleep(CEVA)
+                            pyautogui.leftClick(random.uniform(813, 818), random.uniform(328, 334),
+                                                interval=random.uniform(0.2, 0.9),
+                                                duration=random.uniform(0.2, 0.9))  # for select
+                            pyautogui.leftClick(random.uniform(1220, 1260), random.uniform(798, 803),
+                                                interval=random.uniform(0.2, 0.9),
+                                                duration=random.uniform(0.2, 0.9))  # for collect
 
     def parade(self):
         count = 0
@@ -86,6 +153,9 @@ class Clicker:
             if self.paradis:
                 time.sleep(1)
                 try:
+                    orpheus = pyautogui.locateCenterOnScreen("orpheus.png")
+                    print(orpheus)
+                    time.sleep(1)
                     x, y = pyautogui.locateCenterOnScreen("paradaorfeu.png")
                     generate = random.uniform(0, 5)
                     time.sleep(generate)
@@ -96,6 +166,7 @@ class Clicker:
                     label.config(text=f"PARADE DATE:{str(count)}")
                 except TypeError:
                     time.sleep(1)
+                    # pyautogui.leftClick(1850,335)
                     print("Inca n-am gasit nimica")
 
 
