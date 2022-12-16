@@ -81,7 +81,7 @@ class Clicker:
         i = 0
         while True:
             if self.alive:
-                for i in range(600):
+                for i in range(10):
                     if self.alive:
                         my_progress.step(0.1666666666666667)
                         i += 1
@@ -92,35 +92,41 @@ class Clicker:
                         my_progress.stop()
                         my_progress.step(0)
                         break
-                    if i == 600 and self.alive is True:
+                    if i == 10 and self.alive is True:
                         print("Good")
+                        CEVA = random.uniform(0, 10)
+                        print("FARM: ", CEVA)
+                        sleep(CEVA)
                         while True:
                             try:
-                                time.sleep(1)
-                                k, l = pyautogui.locateCenterOnScreen("sate.png")
-                                print(k, l)
-                                CEVA = random.uniform(0, 300)
-                                print("FARM SECUNDE GENERATE!: ", CEVA)
-                                time.sleep(CEVA)
-                                pyautogui.leftClick(random.uniform(813, 818), random.uniform(328, 334),
-                                                    interval=random.uniform(0.2, 0.9),
-                                                    duration=random.uniform(0.2, 0.9))  # for select
-                                pyautogui.leftClick(random.uniform(1220, 1260), random.uniform(798, 803),
-                                                    interval=random.uniform(0.2, 0.9),
-                                                    duration=random.uniform(0.2, 0.9))  # for collect
-                                my_progress.step(0)
+                                if self.alive is True:
+                                    time.sleep(1)
+                                    k, l = pyautogui.locateCenterOnScreen("sate.png")
+                                    print(k, l)
+                                    time.sleep(0.1)
+                                    pyautogui.leftClick(random.uniform(813, 818), random.uniform(328, 334),
+                                                        interval=random.uniform(0.2, 0.9),
+                                                        duration=random.uniform(0.2, 0.9))  # for select
+                                    pyautogui.leftClick(random.uniform(1220, 1260), random.uniform(798, 803),
+                                                        interval=random.uniform(0.2, 0.9),
+                                                        duration=random.uniform(0.2, 0.9))  # for collect
+                                    my_progress.step(0)
                                 break
                             except TypeError:
-                                time.sleep(0.1)
-                                print("Inca caut")
-                                cent = pyautogui.locateCenterOnScreen("cent.png")
-                                time.sleep(1)
-                                pyautogui.moveTo(cent)
-                                time.sleep(1)
-                                farm = pyautogui.locateCenterOnScreen("farm.png")
-                                time.sleep(1)
-                                pyautogui.leftClick(farm)
-                                time.sleep(1)
+                                if self.alive is True:
+                                    time.sleep(0.1)
+                                    print("Inca caut")
+                                    time.sleep(0.1)
+                                    cent = pyautogui.locateCenterOnScreen("cent.png")
+                                    time.sleep(1)
+                                    pyautogui.moveTo(cent)
+                                    time.sleep(1)
+                                    farm = pyautogui.locateCenterOnScreen("farm.png")
+                                    time.sleep(1)
+                                    pyautogui.leftClick(farm)
+                                    time.sleep(1)
+                            finally:
+                                print("CRATER")
 
 
 clicker = Clicker()
